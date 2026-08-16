@@ -4,563 +4,495 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amina Showkath — Portfolio</title>
-<meta name="description" content="Amina Showkath — Information Systems graduate, PMO &amp; Project Management portfolio.">
+<meta name="description" content="Amina Showkath — Information Systems graduate, Project Coordinator & PMO Analyst portfolio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F7F5F0;
-    --paper-deep:#EFEBE3;
-    --ink:#1B2A41;
-    --ink-soft:#3A4A5E;
-    --slate:#5B6B7C;
-    --rust:#C1622D;
-    --rust-soft:#E8D2C3;
-    --line:#D8D2C4;
-    --serif: 'Source Serif Pro', Georgia, 'Times New Roman', serif;
-    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+    --bg:#0A0D13;
+    --surface:#12161F;
+    --surface-2:#191F2B;
+    --border:#232A37;
+    --border-soft:#1A2029;
+    --text:#E8EAED;
+    --text-dim:#8B94A3;
+    --text-faint:#525C6B;
+    --mint:#5EEAD4;
+    --violet:#B4A0FA;
+    --amber:#FBBF6D;
+    --rose:#F0839A;
+    --mono:'JetBrains Mono', monospace;
+    --sans:'Inter', sans-serif;
+    --sidebar-w:220px;
   }
-  *{ box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
   body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
+    background:var(--bg);
+    color:var(--text);
     font-family:var(--sans);
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+    background-size:28px 28px;
   }
-  a{ color:var(--rust); text-decoration:none; }
-  a:hover{ text-decoration:underline; }
-  a:focus-visible, button:focus-visible{
-    outline:2px solid var(--rust);
-    outline-offset:3px;
+  a{color:var(--mint);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--mint);outline-offset:3px;}
+  ::selection{background:rgba(94,234,212,0.25);color:var(--text);}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---- Top bar ---- */
+  .tabbar{
+    border-bottom:1px solid var(--border);
+    background:rgba(18,22,31,0.85);
+    backdrop-filter:blur(10px);
+    position:sticky;top:0;z-index:100;
+  }
+  .tabbar-inner{
+    display:flex;align-items:center;gap:2px;height:44px;padding:0 16px;
+  }
+  .dots{display:flex;gap:6px;margin-right:14px;flex-shrink:0;}
+  .dot{width:10px;height:10px;border-radius:50%;}
+  .dot.r{background:#FF5F57;} .dot.y{background:#FEBC2E;} .dot.g{background:#28C840;}
+  .tab{
+    font-family:var(--mono);font-size:12px;color:var(--text-dim);
+    padding:6px 12px;border-radius:6px 6px 0 0;
+    display:flex;align-items:center;gap:6px;
+  }
+  .tab.active{background:var(--bg);color:var(--text);border:1px solid var(--border);border-bottom:1px solid var(--bg);margin-bottom:-1px;}
+  .tab .dotmark{width:6px;height:6px;border-radius:50%;background:var(--mint);flex-shrink:0;}
+  .menu-btn{
+    margin-left:auto;display:none;background:none;border:1px solid var(--border);color:var(--text-dim);
+    font-family:var(--mono);font-size:11px;padding:6px 10px;border-radius:6px;cursor:pointer;
   }
 
-  .spine{
-    max-width:880px;
-    margin:0 auto;
-    padding:0 32px;
-    position:relative;
+  /* ---- Layout: sidebar + main ---- */
+  .layout{display:flex;max-width:1080px;margin:0 auto;}
+  .sidebar{
+    width:var(--sidebar-w);flex-shrink:0;
+    padding:28px 0 40px 20px;position:sticky;top:44px;align-self:flex-start;
+    height:calc(100vh - 44px);overflow-y:auto;
   }
-  .spine::before{
-    content:"";
-    position:absolute;
-    top:0; bottom:0; left:32px;
-    width:1px;
-    background:var(--line);
+  .sidebar-label{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;padding-left:8px;}
+  .sidebar nav{display:flex;flex-direction:column;gap:1px;}
+  .sidebar nav a{
+    font-family:var(--mono);font-size:13px;color:var(--text-dim);
+    padding:7px 10px;border-radius:6px;display:flex;align-items:center;gap:8px;
+    border-left:2px solid transparent;
+  }
+  .sidebar nav a:hover{color:var(--text);text-decoration:none;background:var(--surface);}
+  .sidebar nav a.on{color:var(--mint);border-left-color:var(--mint);background:rgba(94,234,212,0.06);}
+  .sidebar nav a .ico{color:var(--text-faint);font-size:11px;}
+  .sidebar-foot{margin-top:28px;padding-left:8px;font-family:var(--mono);font-size:10.5px;color:var(--text-faint);line-height:1.7;}
+  .sidebar-foot .ok{color:var(--mint);}
+
+  main{flex:1;min-width:0;padding:0 24px;max-width:820px;}
+
+  /* ---- Hero ---- */
+  .hero{padding:56px 0 36px;}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:18px;}
+  .terminal, .codeblock{
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;
+  }
+  .terminal{box-shadow:0 24px 60px -24px rgba(0,0,0,0.7);}
+  .terminal-bar, .codeblock-bar{
+    display:flex;align-items:center;gap:8px;padding:10px 14px;
+    border-bottom:1px solid var(--border);background:var(--surface-2);
+  }
+  .terminal-bar span, .codeblock-bar span{font-family:var(--mono);font-size:11px;color:var(--text-faint);}
+  .terminal-body{padding:22px 20px 26px;font-family:var(--mono);font-size:14px;}
+  .prompt-line{color:var(--text-dim);margin-bottom:4px;}
+  .prompt-line .prompt-sym{color:var(--mint);}
+  .output-name{font-size:clamp(28px,5vw,40px);font-weight:800;color:var(--text);margin:14px 0 6px;letter-spacing:-0.02em;}
+  .output-role{font-size:15.5px;min-height:22px;}
+  .role-cycle{color:var(--violet);}
+  .cursor{display:inline-block;width:8px;height:15px;background:var(--mint);margin-left:2px;vertical-align:-2px;animation:blink 1s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .badge{
+    display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11.5px;color:var(--mint);
+    background:rgba(94,234,212,0.08);border:1px solid rgba(94,234,212,0.25);padding:4px 10px;border-radius:20px;margin-top:16px;
+  }
+  .badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 8px var(--mint);}
+
+  /* profile.json signature block */
+  .codeblock-body{padding:18px 20px 20px;font-family:var(--mono);font-size:13px;overflow-x:auto;}
+  .ln{color:var(--text-faint);display:inline-block;width:18px;user-select:none;}
+  .k{color:var(--violet);} .s{color:var(--mint);} .n{color:var(--amber);} .p{color:var(--text-faint);} .b{color:var(--rose);}
+  .codeblock-body div{white-space:pre;}
+
+  .hero-meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;font-family:var(--mono);font-size:12px;color:var(--text-dim);}
+  .hero-meta a{color:var(--text-dim);}
+  .hero-meta a:hover{color:var(--mint);}
+
+  /* ---- Sections ---- */
+  section{padding:48px 0;border-top:1px solid var(--border-soft);scroll-margin-top:60px;}
+  .sec-head{display:flex;align-items:baseline;gap:10px;margin-bottom:26px;}
+  .sec-num{font-family:var(--mono);color:var(--text-faint);font-size:13px;}
+  .sec-title{font-family:var(--mono);font-size:13px;color:var(--text-dim);letter-spacing:0.02em;}
+  .sec-title .kw{color:var(--violet);} .sec-title .fn{color:var(--mint);} .sec-title .s2{color:var(--amber);}
+
+  .lead{font-size:15px;color:var(--text-dim);max-width:600px;}
+  .lead strong{color:var(--text);font-weight:600;}
+  code.inline{font-family:var(--mono);font-size:0.88em;color:var(--amber);background:var(--surface);padding:1px 6px;border-radius:4px;border:1px solid var(--border);}
+
+  /* ---- Git log ---- */
+  .commit{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--border-soft);}
+  .commit:last-child{border-bottom:none;}
+  .commit-graph{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:14px;}
+  .commit-dot{width:10px;height:10px;border-radius:50%;background:var(--violet);border:2px solid var(--bg);box-shadow:0 0 0 1px var(--violet);margin-top:5px;}
+  .commit-line{flex:1;width:2px;background:var(--border);margin-top:4px;}
+  .commit-hash{font-family:var(--mono);font-size:11px;color:var(--text-faint);}
+  .commit-title{font-weight:700;font-size:16px;margin:2px 0 2px;}
+  .commit-meta{font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-bottom:10px;}
+  .commit-meta .org{color:var(--mint);}
+  .commit ul{list-style:none;padding:0;}
+  .commit li{position:relative;padding-left:18px;margin-bottom:7px;font-size:14px;color:var(--text-dim);}
+  .commit li::before{content:'+';position:absolute;left:0;color:var(--mint);font-family:var(--mono);font-weight:700;}
+  .stat-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+  .stat{font-family:var(--mono);font-size:11px;color:var(--text-dim);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:6px 10px;}
+  .stat b{color:var(--amber);font-size:12.5px;}
+
+  /* ---- Projects ---- */
+  .proj-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+  .proj-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;transition:border-color .2s, transform .2s;}
+  .proj-card:hover{border-color:rgba(94,234,212,0.35);transform:translateY(-2px);}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:9px;}
+  .proj-title{font-weight:700;font-size:15.5px;}
+  .proj-tag{font-family:var(--mono);font-size:10px;color:var(--violet);background:rgba(180,160,250,0.1);border:1px solid rgba(180,160,250,0.25);padding:3px 8px;border-radius:5px;white-space:nowrap;}
+  .proj-desc{font-size:13.5px;color:var(--text-dim);margin-bottom:14px;}
+  .proj-stats{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;}
+  .proj-stat b{display:block;font-family:var(--mono);font-size:19px;color:var(--mint);}
+  .proj-stat span{font-size:10.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.04em;}
+  .proj-link{font-family:var(--mono);font-size:12px;}
+
+  /* ---- Education ---- */
+  .edu-item{padding:16px 0;border-bottom:1px solid var(--border-soft);}
+  .edu-item:last-child{border-bottom:none;}
+  .edu-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+  .edu-title{font-weight:700;font-size:15px;}
+  .edu-date{font-family:var(--mono);font-size:11.5px;color:var(--mint);}
+  .edu-org{font-size:13px;color:var(--text-dim);margin:2px 0 8px;}
+  .edu-detail{font-size:13px;color:var(--text-dim);}
+
+  /* ---- Skills ---- */
+  .skill-group{margin-bottom:20px;}
+  .skill-label{font-family:var(--mono);font-size:11px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{font-family:var(--mono);font-size:12px;padding:6px 11px;border-radius:6px;background:var(--surface);border:1px solid var(--border);color:var(--text);}
+  .tag.core{color:var(--mint);border-color:rgba(94,234,212,0.3);}
+  .tag.basic{color:var(--amber);border-color:rgba(251,191,109,0.3);}
+  .tag.basic::after{content:' · basic';color:var(--text-faint);}
+
+  footer{padding:36px 0 60px;text-align:center;}
+  footer .prompt{font-family:var(--mono);font-size:12.5px;color:var(--text-faint);}
+  footer .prompt .sym{color:var(--mint);}
+  .contact-links{display:flex;justify-content:center;gap:18px;margin-top:14px;font-family:var(--mono);font-size:12.5px;flex-wrap:wrap;}
+  footer .commitline{margin-top:22px;font-family:var(--mono);font-size:10.5px;color:var(--text-faint);}
+
+  @media (max-width:880px){
+    .sidebar{display:none;}
+    .menu-btn{display:block;}
+    main{max-width:none;padding:0 20px;}
   }
   @media (max-width:600px){
-    .spine::before{ display:none; }
-    .spine{ padding:0 20px; }
+    .hero{padding:40px 0 24px;}
+    .terminal-body{padding:18px 14px 22px;font-size:13px;}
+    .codeblock-body{font-size:11.5px;}
+    section{padding:36px 0;}
   }
-
-  /* ---------- HEADER ---------- */
-  header{
-    padding:88px 0 56px;
-    position:relative;
-  }
-  .eyebrow{
-    font-family:var(--mono);
-    font-size:12px;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--rust);
-    margin:0 0 18px 0;
-    padding-left:48px;
-  }
-  h1{
-    font-family:var(--serif);
-    font-weight:600;
-    font-size:clamp(40px, 7vw, 64px);
-    line-height:1.04;
-    margin:0 0 14px 0;
-    padding-left:48px;
-    letter-spacing:-0.01em;
-  }
-  .role-line{
-    font-size:19px;
-    color:var(--ink-soft);
-    margin:0 0 28px 0;
-    padding-left:48px;
-    max-width:520px;
-  }
-  .contact-row{
-    display:flex;
-    flex-wrap:wrap;
-    gap:18px 28px;
-    padding-left:48px;
-    font-family:var(--mono);
-    font-size:13px;
-    color:var(--slate);
-  }
-  .contact-row > *{ margin-right:28px; }
-  .contact-row a{ color:var(--ink-soft); }
-  .contact-row a:hover{ color:var(--rust); }
-  @media (max-width:600px){
-    .eyebrow, h1, .role-line, .contact-row{ padding-left:0; }
-  }
-
-  /* ---------- SECTION SCAFFOLD ---------- */
-  section{
-    padding:52px 0;
-    border-top:1px solid var(--line);
-  }
-  .sec-head{
-    display:flex;
-    align-items:baseline;
-    gap:16px;
-    padding-left:48px;
-    margin-bottom:30px;
-  }
-  .sec-num{
-    font-family:var(--mono);
-    font-size:13px;
-    color:var(--rust);
-    width:32px;
-    text-align:right;
-    flex-shrink:0;
-    margin-left:-48px;
-  }
-  .sec-title{
-    font-family:var(--serif);
-    font-size:26px;
-    font-weight:600;
-    margin:0;
-  }
-  .sec-body{ padding-left:48px; }
-  @media (max-width:600px){
-    .sec-head, .sec-body{ padding-left:0; }
-    .sec-num{ margin-left:0; width:auto; }
-  }
-
-  p{ margin:0 0 16px 0; color:var(--ink-soft); max-width:680px; }
-  .lede{ font-size:17px; }
-
-  /* ---------- MATURITY LADDER (signature motif) ---------- */
-  .ladder{
-    display:flex;
-    gap:6px;
-    margin:18px 0 26px 0;
-  }
-  .rung{
-    flex:1;
-    height:8px;
-    border-radius:2px;
-    background:var(--paper-deep);
-    border:1px solid var(--line);
-  }
-  .rung.filled{ background:var(--rust); border-color:var(--rust); }
-  .ladder-label{
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--slate);
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    margin:0 0 22px 0;
-  }
-
-  /* ---------- PROJECT CARDS ---------- */
-  .card{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:28px 30px;
-    margin-bottom:24px;
-  }
-  .card-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:16px;
-    flex-wrap:wrap;
-    margin-bottom:8px;
-  }
-  .card h3{
-    font-family:var(--serif);
-    font-size:21px;
-    margin:0;
-    color:var(--ink);
-  }
-  .meta{
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--slate);
-    white-space:nowrap;
-  }
-  .tag-row{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin:14px 0 6px 0;
-  }
-  .tag{
-    font-family:var(--mono);
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    color:var(--ink-soft);
-    background:var(--paper-deep);
-    border:1px solid var(--line);
-    padding:4px 9px;
-    border-radius:3px;
-  }
-  .card-links{
-    margin-top:16px;
-    display:flex;
-    gap:20px;
-    font-size:14px;
-  }
-  .stat-row{
-    display:flex;
-    gap:32px;
-    margin:18px 0 4px 0;
-    flex-wrap:wrap;
-  }
-  .stat{ min-width:90px; margin-right:32px; margin-bottom:10px; }
-  .stat .num{
-    font-family:var(--serif);
-    font-size:28px;
-    color:var(--rust);
-    line-height:1;
-    display:block;
-  }
-  .stat .lbl{
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--slate);
-    text-transform:uppercase;
-    letter-spacing:.05em;
-  }
-
-  /* expandable detail */
-  details{ margin-top:14px; }
-  summary{
-    cursor:pointer;
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--rust);
-    text-transform:uppercase;
-    letter-spacing:.06em;
-    list-style:none;
-    user-select:none;
-  }
-  summary::-webkit-details-marker{ display:none; }
-  summary::before{ content:"+ "; }
-  details[open] summary::before{ content:"– "; }
-  .detail-grid{
-    margin-top:16px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px;
-  }
-  @media (max-width:560px){ .detail-grid{ grid-template-columns:1fr; } }
-  .detail-block h4{
-    font-family:var(--mono);
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:.06em;
-    color:var(--slate);
-    margin:0 0 8px 0;
-  }
-  .detail-block ul{
-    margin:0; padding-left:18px;
-    font-size:14px;
-    color:var(--ink-soft);
-  }
-  .detail-block li{ margin-bottom:6px; }
-
-  /* ---------- SKILLS ---------- */
-  .skill-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:22px 36px;
-  }
-  @media (max-width:560px){ .skill-grid{ grid-template-columns:1fr; } }
-  .skill-block{ margin-bottom:6px; }
-  .skill-block h4{
-    font-family:var(--mono);
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:.06em;
-    color:var(--rust);
-    margin:0 0 8px 0;
-  }
-  .skill-block p{ font-size:14px; margin:0; }
-
-  /* ---------- EDU/CERT LIST ---------- */
-  .entry{ margin-bottom:26px; }
-  .entry-top{
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:8px;
-    align-items:baseline;
-  }
-  .entry h3{
-    font-family:var(--serif);
-    font-size:19px;
-    margin:0;
-  }
-  .entry .org{
-    color:var(--rust);
-    font-size:14px;
-    font-weight:600;
-    margin:2px 0 8px 0;
-  }
-  .entry .date{
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--slate);
-  }
-  .entry p{ font-size:14.5px; margin-bottom:8px; }
-
-  /* ---------- FOOTER ---------- */
-  footer{
-    padding:48px 0 80px;
-    padding-left:48px;
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--slate);
-  }
-  @media (max-width:600px){ footer{ padding-left:20px; } }
-
-  .btn-link{
-    font-family:var(--mono);
-    font-size:13px;
-    color:var(--ink-soft);
-    border-bottom:1px solid var(--line);
-    padding-bottom:1px;
-  }
-  .btn-link:hover{ color:var(--rust); border-color:var(--rust); text-decoration:none; }
 </style>
 </head>
 <body>
 
-<div class="spine">
-
-  <header>
-    <p class="eyebrow">Information Systems · Riga, Latvia</p>
-    <h1>Amina<br>Showkath</h1>
-    <p class="role-line">Project Coordinator | PMO Analyst | Junior IT Project Manager — structured planning, research, and analysis for Latvian enterprise and academic projects.</p>
-    <div class="contact-row">
-      <a href="mailto:aminashoukath100@gmail.com">aminashoukath100@gmail.com</a>
-      <span>+371 25413195</span>
-      <a href="https://github.com/AMINASHOWKATH" target="_blank" rel="noopener">github.com/AMINASHOWKATH</a>
-    </div>
-  </header>
-
-  <!-- ============ ABOUT ============ -->
-  <section id="about">
-    <div class="sec-head">
-      <span class="sec-num">01</span>
-      <h2 class="sec-title">About</h2>
-    </div>
-    <div class="sec-body">
-      <p class="lede">I'm an Information Systems graduate from Riga Nordic University (July 2026). My work sits at the intersection of project management and data — I build structured frameworks, test them against real operations, and document the process the way I'd want a project handed to me: clearly, with the reasoning visible.</p>
-      <p>My Bachelor's thesis introduced a four-level maturity model for assessing how well Latvian enterprise PMOs integrate their information systems. I applied that same structured, level-based thinking during a traineeship at a Riga restaurant, mapping operational gaps and proposing a phased technology roadmap.</p>
-      <p class="ladder-label">This page, by maturity level</p>
-      <div class="ladder">
-        <div class="rung filled"></div>
-        <div class="rung filled"></div>
-        <div class="rung filled"></div>
-        <div class="rung"></div>
-      </div>
-      <p style="font-size:13px;color:var(--slate);margin-top:-10px;">Level 3 of 4 — research, applied placement work, and documented process all in place. Next: a full-time or internship role in-house.</p>
-    </div>
-  </section>
-
-  <!-- ============ EXPERIENCE ============ -->
-  <section id="experience">
-    <div class="sec-head">
-      <span class="sec-num">02</span>
-      <h2 class="sec-title">Experience</h2>
-    </div>
-    <div class="sec-body">
-
-      <!-- Traineeship -->
-      <div class="card">
-        <div class="card-top">
-          <h3>Business Process Trainee — Restorāns Kolonnāde</h3>
-          <span class="meta">May 2026 · 3–4 weeks</span>
-        </div>
-        <p>A traineeship at a fine-dining restaurant in central Riga, combining active involvement in daily operations with a structured information-systems audit across five business areas — reservations, kitchen &amp; inventory, staffing, events, and marketing/CRM.</p>
-        <div class="tag-row">
-          <span class="tag">Process analysis</span>
-          <span class="tag">Technology gap audit</span>
-          <span class="tag">Vendor evaluation</span>
-          <span class="tag">Roadmap planning</span>
-        </div>
-        <div class="stat-row">
-          <div class="stat"><span class="num">5</span><span class="lbl">Areas audited</span></div>
-          <div class="stat"><span class="num">10+</span><span class="lbl">Platforms evaluated</span></div>
-          <div class="stat"><span class="num">3</span><span class="lbl">Phase roadmap</span></div>
-        </div>
-        <details>
-          <summary>Scope &amp; findings</summary>
-          <div class="detail-grid">
-            <div class="detail-block">
-              <h4>What I did</h4>
-              <ul>
-                <li>Worked across front-of-house, kitchen, and event coordination to observe live workflows</li>
-                <li>Mapped current-state processes against a structured technology gap framework</li>
-                <li>Benchmarked hospitality platforms (SevenRooms, Lightspeed, MarketMan, Tripleseat, and others)</li>
-                <li>Built a prioritised, three-phase rollout plan spanning 6 months</li>
-              </ul>
-            </div>
-            <div class="detail-block">
-              <h4>Key gaps identified</h4>
-              <ul>
-                <li>No integrated POS, reservation, or guest CRM system</li>
-                <li>Kitchen-floor communication relied on verbal relay and paper tickets</li>
-                <li>No real-time inventory or food cost tracking</li>
-                <li>Findings submitted as a formal report; not yet implemented by the organisation</li>
-              </ul>
-            </div>
-          </div>
-        </details>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============ PROJECTS ============ -->
-  <section id="projects">
-    <div class="sec-head">
-      <span class="sec-num">03</span>
-      <h2 class="sec-title">Academic &amp; Independent Projects</h2>
-    </div>
-    <div class="sec-body">
-
-      <!-- Thesis -->
-      <div class="card">
-        <div class="card-top">
-          <h3>IS Integration Maturity in Latvian PMOs</h3>
-          <span class="meta">2025 – 2026 · BSc Thesis</span>
-        </div>
-        <p>A self-developed four-level Integration Maturity Model (IMM), tested against 40 respondents across 7 Latvian industry sectors, with one expert interview and full statistical validation in SPSS.</p>
-        <div class="tag-row">
-          <span class="tag">Research design</span>
-          <span class="tag">SPSS / Spearman</span>
-          <span class="tag">Survey methodology</span>
-          <span class="tag">PMO strategy</span>
-        </div>
-        <div class="stat-row">
-          <div class="stat"><span class="num">40</span><span class="lbl">Respondents</span></div>
-          <div class="stat"><span class="num">7</span><span class="lbl">Sectors</span></div>
-          <div class="stat"><span class="num">4</span><span class="lbl">Hypotheses</span></div>
-          <div class="stat"><span class="num">70%</span><span class="lbl">At IMM L2–L3</span></div>
-        </div>
-        <details>
-          <summary>Methodology &amp; findings</summary>
-          <div class="detail-grid">
-            <div class="detail-block">
-              <h4>Approach</h4>
-              <ul>
-                <li>Designed a 4-level Integration Maturity Model (IMM) from scratch</li>
-                <li>40-respondent survey across 7 industry sectors</li>
-                <li>One anonymised expert interview for qualitative grounding</li>
-                <li>Spearman rank correlation analysis in SPSS</li>
-              </ul>
-            </div>
-            <div class="detail-block">
-              <h4>Key results</h4>
-              <ul>
-                <li>H1 confirmed: 70% of PMOs sampled sit at IMM Levels 2–3</li>
-                <li>Integration maturity correlated with reporting automation (r=0.405)</li>
-                <li>Correlated with data quality (r=0.321) and governance standardisation (r=0.403)</li>
-              </ul>
-            </div>
-          </div>
-        </details>
-        <div class="card-links">
-          <a href="https://github.com/AMINASHOWKATH/bsc-thesis-Amina-Showkath2026" target="_blank" rel="noopener">View repository →</a>
-        </div>
-      </div>
-
-      <!-- Relocation project -->
-      <div class="card">
-        <div class="card-top">
-          <h3>Student Relocation: India → Latvia</h3>
-          <span class="meta">8 weeks · Independent project</span>
-        </div>
-        <p>A self-managed Waterfall project applying formal PM structure to my own move — scope definition, work breakdown, milestone tracking, and a risk register. Early skill-building ahead of the traineeship above.</p>
-        <div class="tag-row">
-          <span class="tag">Waterfall methodology</span>
-          <span class="tag">WBS</span>
-          <span class="tag">Risk register</span>
-        </div>
-        <div class="stat-row">
-          <div class="stat"><span class="num">6</span><span class="lbl">Milestones</span></div>
-          <div class="stat"><span class="num">5</span><span class="lbl">Risks tracked</span></div>
-          <div class="stat"><span class="num">€1,045</span><span class="lbl">Actual spend</span></div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============ EDUCATION & CERTS ============ -->
-  <section id="background">
-    <div class="sec-head">
-      <span class="sec-num">04</span>
-      <h2 class="sec-title">Education &amp; Certifications</h2>
-    </div>
-    <div class="sec-body">
-
-      <div class="entry">
-        <div class="entry-top">
-          <h3>BSc in Information Systems</h3>
-          <span class="date">Completed July 2026</span>
-        </div>
-        <div class="org">Riga Nordic University (RNU), Latvia</div>
-        <p>Thesis supervised by Dr.sc.ing. prof. Andrejs Bondarenko. Coursework and thesis work version-controlled on GitHub with consistent bi-weekly progress commits.</p>
-      </div>
-
-      <div class="entry">
-        <div class="entry-top">
-          <h3>Foundations of Project Management</h3>
-          <span class="date">March 2026</span>
-        </div>
-        <div class="org">Google (Google Career Certificates), via Coursera — 94.6%</div>
-        <p>Project management roles and responsibilities, the project life cycle, and comparative methodologies including traditional/Waterfall and Agile approaches.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============ SKILLS ============ -->
-  <section id="skills">
-    <div class="sec-head">
-      <span class="sec-num">05</span>
-      <h2 class="sec-title">Skills</h2>
-    </div>
-    <div class="sec-body">
-      <div class="skill-grid">
-        <div class="skill-block">
-          <h4>Project management</h4>
-          <p>Scoping, WBS, milestone scheduling, risk registers, stakeholder mapping, retrospectives, Waterfall methodology</p>
-        </div>
-        <div class="skill-block">
-          <h4>Data &amp; reporting</h4>
-          <p>Microsoft Excel, Data Analysis, Technical Documentation</p>
-        </div>
-        <div class="skill-block">
-          <h4>Tools</h4>
-          <p>Jira (basic — Scrum project setup, epics, sprint boards), Power BI (basic — dashboard navigation and reporting), Git / GitHub, Microsoft Office, LaTeX (XeLaTeX, Biber)</p>
-        </div>
-        <div class="skill-block">
-          <h4>Languages</h4>
-          <p>Malayalam (native), Hindi (basic), English (advanced / professional)</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p>Amina Showkath — Riga, Latvia — <a class="btn-link" href="mailto:aminashoukath100@gmail.com">aminashoukath100@gmail.com</a></p>
-  </footer>
-
+<div class="tabbar">
+  <div class="tabbar-inner">
+    <div class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+    <div class="tab active"><span class="dotmark"></span>amina_showkath.tsx</div>
+    <button class="menu-btn" id="menuBtn">≡ menu</button>
+  </div>
 </div>
+
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-label">EXPLORER</div>
+    <nav>
+      <a href="#about" class="ico-link"><span class="ico">#</span> about.ts</a>
+      <a href="#experience"><span class="ico">#</span> experience.log</a>
+      <a href="#projects"><span class="ico">#</span> projects/</a>
+      <a href="#education"><span class="ico">#</span> education.sql</a>
+      <a href="#skills"><span class="ico">#</span> skills.json</a>
+    </nav>
+    <div class="sidebar-foot">
+      <div><span class="ok">●</span> status: available</div>
+      <div>relocating → UAE</div>
+      <div>branch: visit-visa</div>
+    </div>
+  </aside>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" style="border-top:none;">
+      <div class="hero-grid">
+        <div class="terminal">
+          <div class="terminal-bar"><span>zsh — 80×24</span></div>
+          <div class="terminal-body">
+            <div class="prompt-line"><span class="prompt-sym">➜</span> whoami</div>
+            <div class="output-name">Amina Showkath</div>
+            <div class="output-role">Information Systems graduate — <span class="role-cycle" id="roleCycle">Project Coordinator</span><span class="cursor"></span></div>
+            <div class="badge">available now · relocating to UAE</div>
+          </div>
+        </div>
+
+        <div class="codeblock reveal">
+          <div class="codeblock-bar"><span>profile.json</span></div>
+          <div class="codeblock-body"><div><span class="p">{</span></div><div>  <span class="k">"role"</span><span class="p">:</span> <span class="s">"Project Coordinator / PMO Analyst"</span><span class="p">,</span></div><div>  <span class="k">"grad"</span><span class="p">:</span> <span class="s">"BSc Information Systems, 2026"</span><span class="p">,</span></div><div>  <span class="k">"thesis"</span><span class="p">:</span> <span class="p">{</span> <span class="k">"hypotheses"</span><span class="p">:</span> <span class="n">4</span><span class="p">,</span> <span class="k">"confirmed"</span><span class="p">:</span> <span class="n">4</span> <span class="p">},</span></div><div>  <span class="k">"location"</span><span class="p">:</span> <span class="s">"Riga, LV"</span> <span class="p">→</span> <span class="s">"UAE"</span><span class="p">,</span></div><div>  <span class="k">"stack"</span><span class="p">:</span> <span class="p">[</span><span class="s">"PM fundamentals"</span><span class="p">,</span> <span class="s">"Jira"</span><span class="p">,</span> <span class="s">"Excel"</span><span class="p">,</span> <span class="s">"Git"</span><span class="p">],</span></div><div>  <span class="k">"open_to_relocate"</span><span class="p">:</span> <span class="b">true</span></div><div><span class="p">}</span></div></div>
+        </div>
+      </div>
+
+      <div class="hero-meta">
+        <a href="mailto:aminashoukath100@gmail.com">aminashoukath100@gmail.com</a>
+        <span>·</span><span>+371 25413195</span><span>·</span>
+        <a href="https://github.com/AMINASHOWKATH" target="_blank" rel="noopener">github.com/AMINASHOWKATH</a>
+        <span>·</span>
+        <a href="https://linkedin.com/in/amina-showkath-820a4a394" target="_blank" rel="noopener">linkedin</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+      <div class="sec-head"><span class="sec-num">01</span><span class="sec-title"><span class="kw">const</span> <span class="fn">about</span> = <span class="s2">()</span> =></span></div>
+      <p class="lead">
+        I'm an Information Systems graduate from Riga Nordic University, working at the intersection of
+        <strong>project management and structured data analysis</strong>. My thesis introduced a four-level
+        maturity model for assessing how Latvian enterprise PMOs integrate their information systems — I applied
+        that same structured, level-based thinking to a live technology gap audit during my traineeship at a
+        Riga restaurant.
+      </p>
+      <p class="lead" style="margin-top:14px;">
+        I build frameworks, test them against real operations, and document the process the way I'd want a
+        project handed to me: clearly, with the reasoning visible in version control. All research work is
+        tracked on <code class="inline">GitHub</code> with bi-weekly commits.
+      </p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="reveal">
+      <div class="sec-head"><span class="sec-num">02</span><span class="sec-title">git log --experience</span></div>
+
+      <div class="commit">
+        <div class="commit-graph"><div class="commit-dot"></div><div class="commit-line"></div></div>
+        <div class="commit-body">
+          <div class="commit-hash">commit a3f9e21</div>
+          <div class="commit-title">Business Technology Trainee</div>
+          <div class="commit-meta"><span class="org">Restorāns Kolonnāde</span> · Riga, Latvia · May 2026 (4 weeks)</div>
+          <ul>
+            <li>Audited 5 business areas (reservations, kitchen &amp; inventory, staffing, events, marketing/CRM) against a structured technology gap framework</li>
+            <li>Benchmarked 10+ hospitality platforms including SevenRooms, Lightspeed, MarketMan, and Tripleseat</li>
+            <li>Delivered a prioritised, 3-phase implementation roadmap covering 22 identified gaps</li>
+            <li>Presented findings directly to management stakeholders</li>
+          </ul>
+          <div class="stat-row">
+            <div class="stat"><b>5</b> areas audited</div>
+            <div class="stat"><b>10+</b> platforms evaluated</div>
+            <div class="stat"><b>22</b> gaps identified</div>
+            <div class="stat"><b>11</b>-point roadmap</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="commit">
+        <div class="commit-graph"><div class="commit-dot"></div></div>
+        <div class="commit-body">
+          <div class="commit-hash">commit 7c1b884</div>
+          <div class="commit-title">Support Specialist</div>
+          <div class="commit-meta"><span class="org">Astrid International SIA</span> · Riga, Latvia · May – Jun 2025 (2 months)</div>
+          <ul>
+            <li>Maintained internal project documentation and reporting accuracy across team records</li>
+            <li>Supported day-to-day coordination in a fast-paced operational environment</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal">
+      <div class="sec-head"><span class="sec-num">03</span><span class="sec-title"><span class="kw">export</span> <span class="fn">projects</span></span></div>
+
+      <div class="proj-grid">
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-title">IS Integration Maturity in Latvian PMOs</div>
+            <div class="proj-tag">BSc THESIS</div>
+          </div>
+          <p class="proj-desc">
+            A self-developed four-level Integration Maturity Model (IMM), validated through an 8-task research
+            design: a 40-respondent survey across 7 industry sectors, plus Spearman rank correlation analysis
+            testing 4 hypotheses — all 4 confirmed.
+          </p>
+          <div class="proj-stats">
+            <div class="proj-stat"><b>40</b><span>Respondents</span></div>
+            <div class="proj-stat"><b>7</b><span>Sectors</span></div>
+            <div class="proj-stat"><b>4/4</b><span>Confirmed</span></div>
+            <div class="proj-stat"><b>r=0.405</b><span>Top correlation</span></div>
+          </div>
+          <a class="proj-link" href="https://github.com/AMINASHOWKATH/bsc-thesis-Amina-Showkath2026" target="_blank" rel="noopener">→ view repository</a>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-title">Student Relocation: India → Latvia</div>
+            <div class="proj-tag">INDEPENDENT</div>
+          </div>
+          <p class="proj-desc">
+            A self-managed Waterfall project applying formal PM structure to my own international move — scope
+            definition, a full Work Breakdown Structure across 5 phases, milestone tracking, and a risk register.
+          </p>
+          <div class="proj-stats">
+            <div class="proj-stat"><b>6</b><span>Milestones</span></div>
+            <div class="proj-stat"><b>5</b><span>Risks tracked</span></div>
+            <div class="proj-stat"><b>€1,045</b><span>Actual spend</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="reveal">
+      <div class="sec-head"><span class="sec-num">04</span><span class="sec-title">SELECT * FROM education</span></div>
+
+      <div class="edu-item">
+        <div class="edu-top"><div class="edu-title">BSc in Information Systems</div><div class="edu-date">Completed July 2026</div></div>
+        <div class="edu-org">Riga Nordic University (RNU), Latvia</div>
+        <div class="edu-detail">
+          Thesis supervised by Dr.sc.ing. prof. Andrejs Bondarenko. Relevant coursework: Software Project
+          Management, System Theory &amp; Analysis, Software Engineering &amp; IS Design, Databases,
+          Business Communications, Statistics, Computer Networks, AI, Information Security &amp; Cryptography.
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-top"><div class="edu-title">Higher Secondary Certificate (Science)</div><div class="edu-date">March 2020</div></div>
+        <div class="edu-org">Board of Higher Secondary Examinations, Govt. of Kerala, India</div>
+        <div class="edu-detail">Physics, Chemistry, Biology, Mathematics, English — Grade A+ in Chemistry and Biology.</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-top"><div class="edu-title">Foundations of Project Management</div><div class="edu-date">March 2026</div></div>
+        <div class="edu-org">Google (Google Career Certificates) via Coursera — 94.6%</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-top"><div class="edu-title">Professional Scrum Master I (PSM I)</div><div class="edu-date">In preparation</div></div>
+        <div class="edu-org">Scrum.org</div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="reveal">
+      <div class="sec-head"><span class="sec-num">05</span><span class="sec-title"><span class="kw">import</span> { skills } <span class="kw">from</span> <span class="s2">'./amina'</span></span></div>
+
+      <div class="skill-group">
+        <div class="skill-label">Project Management</div>
+        <div class="tags">
+          <span class="tag core">Project Scoping</span><span class="tag core">WBS</span>
+          <span class="tag core">Milestone Scheduling</span><span class="tag core">Risk Registers</span>
+          <span class="tag core">Stakeholder Mapping</span><span class="tag core">Retrospectives</span>
+          <span class="tag core">Waterfall</span><span class="tag core">Agile Fundamentals</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Tools</div>
+        <div class="tags">
+          <span class="tag">Git / GitHub</span><span class="tag">Microsoft Office</span>
+          <span class="tag">VS Code</span><span class="tag">LaTeX (XeLaTeX, Biber)</span>
+          <span class="tag basic">Jira</span><span class="tag basic">Power BI</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Languages</div>
+        <div class="tags">
+          <span class="tag">Malayalam — native</span><span class="tag">English — advanced</span>
+          <span class="tag">Hindi — basic</span><span class="tag">Latvian — beginner</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="prompt"><span class="sym">➜</span> echo $CONTACT</div>
+      <div class="contact-links">
+        <a href="mailto:aminashoukath100@gmail.com">email</a>
+        <a href="https://github.com/AMINASHOWKATH" target="_blank" rel="noopener">github</a>
+        <a href="https://linkedin.com/in/amina-showkath-820a4a394" target="_blank" rel="noopener">linkedin</a>
+      </div>
+      <div class="commitline">commit a3f9e21 · last updated Aug 2026 · built with intent, not a template</div>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  const roles = ["Project Coordinator", "PMO Analyst", "Junior IT Project Manager", "Scrum Master (in training)"];
+  const el = document.getElementById('roleCycle');
+  let idx = 0, charIdx = 0, deleting = false;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function tick(){
+    const current = roles[idx];
+    if(!deleting){
+      charIdx++;
+      el.textContent = current.slice(0, charIdx);
+      if(charIdx === current.length){ deleting = true; setTimeout(tick, 1400); return; }
+    } else {
+      charIdx--;
+      el.textContent = current.slice(0, charIdx);
+      if(charIdx === 0){ deleting = false; idx = (idx+1) % roles.length; }
+    }
+    setTimeout(tick, deleting ? 35 : 55);
+  }
+  if(reduced){ el.textContent = roles[0]; } else { setTimeout(tick, 600); }
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Active sidebar link on scroll
+  const links = document.querySelectorAll('.sidebar nav a');
+  const sections = [...links].map(l => document.querySelector(l.getAttribute('href')));
+  const nav = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const idx2 = sections.indexOf(entry.target);
+      if(entry.isIntersecting && idx2 !== -1){
+        links.forEach(l=>l.classList.remove('on'));
+        links[idx2].classList.add('on');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(s=> s && nav.observe(s));
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const sidebar = document.getElementById('sidebar');
+  if(menuBtn){
+    menuBtn.addEventListener('click', ()=>{
+      sidebar.style.display = sidebar.style.display === 'block' ? 'none' : 'block';
+      sidebar.style.position = 'static';
+      sidebar.style.height = 'auto';
+      sidebar.style.width = '100%';
+      sidebar.style.borderBottom = '1px solid var(--border)';
+      sidebar.style.padding = '16px 0 16px 4px';
+    });
+  }
+</script>
 
 </body>
 </html>
